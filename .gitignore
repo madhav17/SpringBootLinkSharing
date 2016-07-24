@@ -26,6 +26,7 @@
 # plugin release files
 /*.zip
 /plugin.xml
+.idea/workspace.xml
 
 # older plugin install locations
 /plugins
