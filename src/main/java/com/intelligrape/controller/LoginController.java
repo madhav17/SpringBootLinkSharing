@@ -43,15 +43,15 @@ public class LoginController {
         return modelAndView;
     }
 
-//    @RequestMapping(value = {"/"})
-//    public ModelAndView homePage() {
-////        response body explanation
-////        http://stackoverflow.com/questions/7672858/return-only-string-message-from-spring-mvc-3-controller
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.setViewName("welcome");
-//        return modelAndView;
-//
-//    }
+    @RequestMapping("/login/homePage")
+    public ModelAndView homePage() {
+//        response body explanation
+//        http://stackoverflow.com/questions/7672858/return-only-string-message-from-spring-mvc-3-controller
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("welcome");
+        return modelAndView;
+
+    }
 
 
     @RequestMapping(value = {"/", "/login/signIn"})
@@ -87,17 +87,17 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/login/forgotPassword")
-    public ModelAndView forgotPassword(){
+    public ModelAndView forgotPassword() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/login/forgotPassword");
         return modelAndView;
     }
 
-    @RequestMapping(value ="/login/sendPasswordMail")
-    public ModelAndView sendPasswordMail(@RequestParam(value = "username") String username){
+    @RequestMapping(value = "/login/sendPasswordMail")
+    public ModelAndView sendPasswordMail(@RequestParam(value = "username") String username) {
         ModelAndView modelAndView = new ModelAndView();
         String msg = loginService.sendPassword(username);
-        modelAndView.addObject("msg",msg);
+        modelAndView.addObject("msg", msg);
         modelAndView.setViewName("/login/signIn");
         return modelAndView;
     }
