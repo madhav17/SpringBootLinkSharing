@@ -1,6 +1,6 @@
 package com.intelligrape.configuration;
 
-//import com.intelligrape.service.UtilService;
+import com.intelligrape.service.UtilService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.MessageSource;
@@ -26,7 +26,7 @@ import org.springframework.web.servlet.view.JstlView;
 public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationListener<ContextRefreshedEvent> {
 
     @Autowired
-//    public UtilService utilService;
+    public UtilService utilService;
 
     @Bean
     public InternalResourceViewResolver viewResolver() {
