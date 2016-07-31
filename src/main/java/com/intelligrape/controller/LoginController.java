@@ -14,11 +14,13 @@ public class LoginController {
 
 
     @RequestMapping(value = {"/"})
-    @ResponseBody
-    public String homePage() {
+    public ModelAndView homePage() {
 //        response body explanation
 //        http://stackoverflow.com/questions/7672858/return-only-string-message-from-spring-mvc-3-controller
-        return "Home Page";
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("welcome");
+        return modelAndView;
+
     }
 
 }
