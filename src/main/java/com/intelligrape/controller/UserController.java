@@ -81,7 +81,7 @@ public class UserController {
 
         modelAndView.addObject("topics", topicList);
         modelAndView.addObject("userNewFullName", user.getFullName()); // to explicitly user new Name in jsp
-        modelAndView.setViewName("user/dashboard");
+        modelAndView.setViewName("user/dashboardUpdate");
 
         httpSession.setAttribute("currentUser", user);
         httpSession.setAttribute("username", user.getFullName());

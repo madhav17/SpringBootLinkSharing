@@ -94,9 +94,6 @@
                 <div class="col-sm-6 col-sm-offset-3 social-login">
 
                     <div class="social-login-buttons">
-                        <a class="btn btn-link-2" href="#">
-                            Google Plus
-                        </a>
                         <a class="btn btn-link-2" href="/login/forgotPassword">
                             Forgot Password
                         </a>
