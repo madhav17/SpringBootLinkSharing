@@ -49,4 +49,16 @@ public class LoginServiceImpl implements LoginService {
         criteria.setProjection(Projections.property("password"));
         return (String) criteria.uniqueResult();
     }
+
+    public String sendUserCreationMail(String username) {
+        String msg = null;
+        String password = getPassword(username);
+        if (password != null) {
+            mailHelperService.sendMail(username, "Account Created", "Congratz your account is created in LinkSharing Username: " + username + " and  Password: " + password + ".");
+            msg = "Account Created Successfully";
+        } else {
+            msg = "Account Cannot be Created";
+        }
+        return msg;
+    }
 }

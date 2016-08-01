@@ -10,5 +10,7 @@ public interface LoginService {
 
     public String sendPassword(String username);
 
+    public String sendUserCreationMail(String username);
+
     public String getPassword(String username);
 }

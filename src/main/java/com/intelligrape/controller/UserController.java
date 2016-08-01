@@ -2,6 +2,7 @@ package com.intelligrape.controller;
 
 import com.intelligrape.model.Topic;
 import com.intelligrape.model.User;
+import com.intelligrape.service.LoginService;
 import com.intelligrape.service.MailHelperService;
 import com.intelligrape.service.UserService;
 import com.intelligrape.util.CO.UserCO;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -26,13 +28,15 @@ public class UserController {
     private UserService userService;
 
     @Autowired
-    private MailHelperService mailHelperService;
+    private LoginService loginService;
 
     @RequestMapping(value = "/register")
-    public String register(UserCO userCO) {
+    public String register(UserCO userCO, RedirectAttributes attributes) {
         if (userCO.firstName != null && userCO.lastName != null && userCO.username != null && userCO.password != null) {
             User currentUser = new User(userCO);
             userService.saveUserAndRole(currentUser, Role.ROLE_USER.name());
+            String msg = loginService.sendUserCreationMail(currentUser.username);
+            attributes.addFlashAttribute("msg", msg);
         }
         return "redirect:/";
     }
@@ -50,21 +54,21 @@ public class UserController {
         model.addAttribute("topicSubscribedTopic", userService.countUserSubscribedTopics(currentUser));
         model.addAttribute("topicUnSubscribedTopic", userService.countUnSubscribedTopics(currentUser));
         model.addAttribute("topicSubscribedToday", userService.countTopicsSubscribedToday(currentUser));
-        model.addAttribute("recentTopics",userService.recentTopicList(currentUser));
+        model.addAttribute("recentTopics", userService.recentTopicList(currentUser));
         return "user/dashboard";
     }
 
     @RequestMapping(value = "/ajaxDashboard")
-    public ModelAndView ajaxDashboard(HttpSession httpSession){
+    public ModelAndView ajaxDashboard(HttpSession httpSession) {
         ModelAndView modelAndView = new ModelAndView();
-        User user = (User)httpSession.getAttribute("currentUser");
+        User user = (User) httpSession.getAttribute("currentUser");
         List<Topic> topicList = userService.findAllUserTopics(user);
-        modelAndView.addObject("topics",topicList);
+        modelAndView.addObject("topics", topicList);
         modelAndView.addObject("topicCount", userService.countUserTopics(user));
         modelAndView.addObject("topicSubscribedTopic", userService.countUserSubscribedTopics(user));
         modelAndView.addObject("topicUnSubscribedTopic", userService.countUnSubscribedTopics(user));
         modelAndView.addObject("topicSubscribedToday", userService.countTopicsSubscribedToday(user));
-        modelAndView.addObject("recentTopics",userService.recentTopicList(user));
+        modelAndView.addObject("recentTopics", userService.recentTopicList(user));
         modelAndView.setViewName("user/ajaxDashboard");
         return modelAndView;
     }
@@ -73,7 +77,7 @@ public class UserController {
     @RequestMapping(value = "/updateUser")
     public ModelAndView updateUser(HttpSession httpSession, UserCO userCO) {
         ModelAndView modelAndView = new ModelAndView();
-        User user = (User)httpSession.getAttribute("currentUser");
+        User user = (User) httpSession.getAttribute("currentUser");
         user = userService.updateUser(user, userCO.firstName, userCO.lastName, userCO.password);
         List<Topic> topicList = userService.findAllUserTopics(user);
 
@@ -89,7 +93,7 @@ public class UserController {
         modelAndView.addObject("topicSubscribedTopic", userService.countUserSubscribedTopics(user));
         modelAndView.addObject("topicUnSubscribedTopic", userService.countUnSubscribedTopics(user));
         modelAndView.addObject("topicSubscribedToday", userService.countTopicsSubscribedToday(user));
-        modelAndView.addObject("recentTopics",userService.recentTopicList(user));
+        modelAndView.addObject("recentTopics", userService.recentTopicList(user));
         httpSession.setAttribute("profileUrl", "/user/update?id=" + user.getId());
 
         return modelAndView;
