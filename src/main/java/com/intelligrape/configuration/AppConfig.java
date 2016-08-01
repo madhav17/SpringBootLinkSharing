@@ -55,7 +55,7 @@ public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationLis
     * method whenever the  context is started (or refreshed).
     */
     public void onApplicationEvent(ContextRefreshedEvent event) {
-//        utilService.bootStrapData();
+        utilService.bootStrapData();
     }
 
     @Override

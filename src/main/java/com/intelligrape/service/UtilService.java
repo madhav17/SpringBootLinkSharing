@@ -33,19 +33,21 @@ public class UtilService {
     @Autowired
     public SubscriptionService subscriptionService;
 
-    private  static final Logger log = Util.getLogger(UtilService.class);
+    private static final Logger log = Util.getLogger(UtilService.class);
 
     public void bootStrapData() {
-        log.error("Bootstarp is called");
-        createUserAndTopic("Madhav", "Khanna", "madhav.khanna@tothenew.com", "1234", "First Topic", true);
-        createUserAndTopic("Maddy", "Khanna", "madhav.khanna@intelligrape.com", "1234", "Second Topic", true);
+        if (userService.userCount() == 0) {
+            log.error("Bootstarp is called ##################################################");
+            createUserAndTopic("Madhav", "Khanna", "madhav.khanna@tothenew.com", "1234", "First Topic", true);
+            createUserAndTopic("Maddy", "Khanna", "madhav.khanna@intelligrape.com", "1234", "Second Topic", true);
+        }
     }
 
     public void createUserAndTopic(String firstName, String lastName, String username, String password, String title, Boolean enabled) {
         User user = new User(firstName, lastName, username, password, enabled);
         userService.saveUserAndRole(user, Role.ROLE_USER.name());
         Topic topic = topicService.saveTopic(new Topic(user, title, "https://www.google.co.in/"));
-        subscriptionService.createSubscription(user,topic,new Date());
+        subscriptionService.createSubscription(user, topic, new Date());
     }
 
 }

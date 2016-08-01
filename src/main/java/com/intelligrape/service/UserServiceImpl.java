@@ -105,4 +105,8 @@ public class UserServiceImpl implements UserService {
         return userDao.recentTopicList(user);
     }
 
+    public Integer userCount(){
+        return userDao.userCount();
+    }
+
 }

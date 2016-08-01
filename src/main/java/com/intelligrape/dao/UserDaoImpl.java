@@ -74,21 +74,26 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
     public Long countTopicsSubscribedToday(User user) {
         Criteria criteria = sessionFactory.openSession().createCriteria(Subscription.class);
         criteria.add(Restrictions.eq("user", user));
-        criteria.createAlias("topic","subscriptionTopic");
-        criteria.add(Restrictions.between("dateCreated", Util.clearTime(new Date()),new Date()));
-        criteria.add(Restrictions.ne("subscriptionTopic.user",user));
+        criteria.createAlias("topic", "subscriptionTopic");
+        criteria.add(Restrictions.between("dateCreated", Util.clearTime(new Date()), new Date()));
+        criteria.add(Restrictions.ne("subscriptionTopic.user", user));
         criteria.setProjection(Projections.count("id"));
         return (Long) criteria.list().get(0);
     }
 
-    public List<Topic> recentTopicList(User user){
+    public List<Topic> recentTopicList(User user) {
         Criteria criteria = sessionFactory.openSession().createCriteria(Topic.class);
-        criteria.add(Restrictions.ne("user",user));
-        criteria.add(Restrictions.between("dateCreated",Util.clearTime(new Date()),new Date()));
-        List<Topic> topicList =  criteria.list();
+        criteria.add(Restrictions.ne("user", user));
+        criteria.add(Restrictions.between("dateCreated", Util.clearTime(new Date()), new Date()));
+        List<Topic> topicList = criteria.list();
         System.out.println("sdf");
         System.out.println(topicList);
         System.out.println("sdf");
         return topicList;
+    }
+
+    public Integer userCount() {
+        Criteria criteria = sessionFactory.openSession().createCriteria(User.class);
+        return (((Number) criteria.setProjection(Projections.rowCount()).uniqueResult()).intValue());
     }
 }

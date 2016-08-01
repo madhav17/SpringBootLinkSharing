@@ -33,4 +33,6 @@ public interface UserService {
     Long countTopicsSubscribedToday(User user);
 
     List<Topic> recentTopicList(User user);
+
+    Integer userCount();
 }
