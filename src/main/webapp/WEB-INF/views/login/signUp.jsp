@@ -7,17 +7,17 @@
 
 
     <%--global css goes here...--%>
-    <spring:url value="/resources/js/app.js" var="appJs" />
-    <spring:url value="/resources/js/bootstrap.min.js" var="bootStrapJs" />
-    <spring:url value="/resources/js/jquery.min.js" var="jqueryJs" />
-    <spring:url value="/resources/js/jquery.min.js" var="scripsJs" />
-    <spring:url value="/resources/js/scripts.js" var="jqueryJs" />
-    <spring:url value="/resources/js/jquery.backstretch.min.js" var="backstretchJs" />
+    <spring:url value="/resources/js/app.js" var="appJs"/>
+    <spring:url value="/resources/js/bootstrap.min.js" var="bootStrapJs"/>
+    <spring:url value="/resources/js/jquery.min.js" var="jqueryJs"/>
+    <spring:url value="/resources/js/jquery.min.js" var="scripsJs"/>
+    <spring:url value="/resources/js/scripts.js" var="jqueryJs"/>
+    <spring:url value="/resources/js/jquery.backstretch.min.js" var="backstretchJs"/>
 
-    <spring:url value="/resources/css/bootstrap.min.css" var="bootstrapCSS" />
-    <spring:url value="/resources/css/font-awesome.min.css" var="fontCSS" />
-    <spring:url value="/resources/css/styleLogin.css" var="styleLoginCSS" />
-    <spring:url value="/resources/css/form-elements.css" var="formElementCSS" />
+    <spring:url value="/resources/css/bootstrap.min.css" var="bootstrapCSS"/>
+    <spring:url value="/resources/css/font-awesome.min.css" var="fontCSS"/>
+    <spring:url value="/resources/css/styleLogin.css" var="styleLoginCSS"/>
+    <spring:url value="/resources/css/form-elements.css" var="formElementCSS"/>
     <spring:url value="/resources/css/appCustom.css" var="customCSS"/>
 
 
@@ -35,7 +35,7 @@
 
 </head>
 <body>
-<div class="top-content" style="background-color:#39435C;width: 100%;height: 100%;">
+<div class="top-content" style="background-color:#39435C;height: 120%;">
 
 
     <div class="inner-bg" style="width: 100%;height: 100%;">
@@ -75,7 +75,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="sr-only" for="password">Password : </label>
-                                <input type="text" class="form-username form-control" name="password" id="password"
+                                <input type="password" class="form-username form-control" name="password" id="password"
                                        required="true" placeholder="Password"/>
                             </div>
 

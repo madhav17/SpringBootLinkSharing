@@ -40,7 +40,7 @@
 
 
 <!-- Top content -->
-<div class="top-content" style="background-color:#39435C;width: 100%;height: 100%;">
+<div class="top-content" style="background-color:#39435C;height: 120%;">
 
 
     <c:if test="${not empty error}">

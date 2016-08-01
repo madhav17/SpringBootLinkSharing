@@ -35,7 +35,7 @@
 
 </head>
 <body>
-<div class="top-content" style="background-color:#39435C;width: 100%;height: 100%;">
+<div class="top-content" style="background-color:#39435C;height: 120%;">
 
 
     <div class="inner-bg" style="width: 100%;height: 100%;">
