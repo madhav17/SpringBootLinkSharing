@@ -52,7 +52,7 @@ public class UtilService {
     }
 
     public String fetchBodyForUnSubscribeTopics(List<Topic> unSubscribedTopicList) {
-        String body = "Following are the List of Un Subscribe Topics \n";
+        String body = "Following are the List of Un Subscribe Topics \n \n";
 
         for (Topic topic : unSubscribedTopicList) {
             body += topic.title + "\n";
