@@ -23,3 +23,7 @@ function updateTopic(topicId) {
     var data = {id: topicId};
     ajaxTemplateForSave("/topic/update", "right-side-panel", data);
 }
+
+jQuery(document).ready(function () {
+   // alert("Reload");
+});

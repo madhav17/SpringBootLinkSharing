@@ -86,9 +86,6 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
         criteria.add(Restrictions.ne("user", user));
         criteria.add(Restrictions.between("dateCreated", Util.clearTime(new Date()), new Date()));
         List<Topic> topicList = criteria.list();
-        System.out.println("sdf");
-        System.out.println(topicList);
-        System.out.println("sdf");
         return topicList;
     }
 

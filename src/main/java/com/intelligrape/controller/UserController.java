@@ -44,6 +44,8 @@ public class UserController {
     @RequestMapping(value = "/dashboard")
     public String dashboard(HttpSession httpSession, Model model) {
 
+        System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+
         User currentUser = userService.getLoggedInUser();
         List<Topic> topicList = userService.findAllUserTopics(currentUser);
         httpSession.setAttribute("currentUser", currentUser);
