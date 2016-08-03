@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 
 @Service("utilService")
 @Transactional
@@ -48,6 +49,15 @@ public class UtilService {
         userService.saveUserAndRole(user, Role.ROLE_USER.name());
         Topic topic = topicService.saveTopic(new Topic(user, title, "https://www.google.co.in/"));
         subscriptionService.createSubscription(user, topic, new Date());
+    }
+
+    public String fetchBodyForUnSubscribeTopics(List<Topic> unSubscribedTopicList) {
+        String body = "Following are the List of Un Subscribe Topics \n";
+
+        for (Topic topic : unSubscribedTopicList) {
+            body += topic.title + "\n";
+        }
+        return body;
     }
 
 }
